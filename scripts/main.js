@@ -1,3 +1,5 @@
+var isAfterEquals = false;
+
 const add = (first, last) => first + last;
 const subtract = (first, last) => first - last;
 const divide = (first, last) => first / last;
@@ -46,11 +48,16 @@ function OnDigitClick(e) {
         }
     }
     else {
+        if(isAfterEquals){
+            Clear(null);
+            isAfterEquals = false;
+        }
         resault.value += e.target.innerText;
     }
 }
 
 function Equals(e) {
+    isAfterEquals = true;
     const text = resault.value;
     let array = ['0', '+'].concat(text.split('+').join(',+,').split('-').join(',-,').split('*').join(',*,').split('÷').join(',÷,').split(','));
     while (array.includes('')) {
